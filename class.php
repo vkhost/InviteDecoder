@@ -19,7 +19,7 @@ class InviteDecoder {
 	
 	public function decodeID($encoded){ // vk.me/join/*******
 		$c = $this->chat_convert($this->base64url_decode($encoded));
-		return [unpack("J", $c[0])[1], $this->base64url_encode2($c[1])];
+		return [unpack("J", $c[0])[1], base64_encode($c[1])];
 	}
 	
 	public function encodeLink($id, $key){ // invite_chat_id, invite_hash
