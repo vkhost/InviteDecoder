@@ -24,15 +24,11 @@ class InviteDecoder {
 	
 	public function encodeLink($id, $key){ // invite_chat_id, invite_hash
 		$c = $this->chat_convert(pack('J', $id));
-		return $this->base64url_encode($c[0].$this->base64url_decode($key));
+		return $this->base64url_encode($c[0].base64_decode($key));
 	}
 	
 	private function base64url_encode($data){
-		return rtrim($this->base64url_encode2($data), '=');
-	}
-
-    	private function base64url_encode2($data){
-		return strtr(base64_encode($data), '+', '_');
+		return rtrim(strtr(base64_encode($data), '+', '_'), '=');
 	}
 	
 	private function base64url_decode($data){
