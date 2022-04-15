@@ -1,9 +1,11 @@
 <?php
 
 /*
+
 $chat = new InviteDecoder();
 echo 'https://vk.me/join/'.$chat->encodeLink($chat->toLong(550445233, 2000000000), 'y4FHhytej7N4rw=='); // компоненты в ссылку
 print_r($chat->toComponents($chat->decodeID('AJQ1d7EgzyDLgUeHK16Ps3iv')[0])); // ссылка в компоненты
+
 */
 
 class InviteDecoder {
@@ -27,6 +29,10 @@ class InviteDecoder {
 	
 	private function base64url_encode($data){
 		return rtrim($this->base64url_encode2($data), '=');
+	}
+
+    	private function base64url_encode2($data){
+		return strtr(base64_encode($data), '+', '_');
 	}
 	
 	private function base64url_decode($data){
